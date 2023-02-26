@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS + JS Gauge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="gauge_1" class="gauge">
+            <div class="gauge-dial"></div>
+            <div class="gauge-display">
+                <h3>
+                    <span class="gauge-value">72</span>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <input type="range" max="360" value="72" id="ng">
+    <br>
+    <div>
+        <label for="autorun">Auto Run</label>
+        <input id="autorun" type="checkbox">
+    </div>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    block-size: 100%;
+    color-scheme: dark light;
+}
+
+body {
+    min-block-size: 100%;
+    font-family: system-ui, sans-serif;
+
+    display: grid;
+    place-content: center;
+    gap: 5vmin;
+}
+
+.container {
+    transform: rotate(-90deg);
+}
+
+.gauge {
+    display: grid;
+    place-items: center;
+}
+
+.gauge > * {
+    grid-area: 1/1;
+}
+
+.gauge > h3 {
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-numeric */
+    font-variant-numeric: tabular-nums;
+}
+
+.gauge-dial {
+    --ng: 72deg; /* can be set via slider */
+    --color: green;
+    --thickness: 50px;
+    --_inner: calc(70% - var(--thickness));
+    --_outer: calc(var(--_inner) + 1px); /* fixes aliasing */
+
+    /* hides the inner part of the conic gradient */
+    -webkit-mask: radial-gradient(
+        circle,
+        #0000 var(--_inner),
+        #000 var(--_outer)
+    );
+    mask: radial-gradient(circle, #0000 var(--_inner), #000 var(--_outer));
+
+    /* the conic gradient, transparent after --ng */
+    background-image: conic-gradient(var(--color) var(--ng), #0000 0);
+
+    aspect-ratio: 1;
+    inline-size: 50vmin;
+    border-radius: 50%;
+}
+
+.gauge-display {
+    transform: rotate(90deg);
+}
