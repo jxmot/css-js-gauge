@@ -1,3 +1,38 @@
+/*
+*/
+let gauge_def = [ 
+    {
+        ranges: [
+            {top:  66, color: 'lightblue'},
+            {top:  85, color: 'green'},
+            {top: 100, color: 'yellow'},
+            {top: 120, color: 'red'},
+        ],
+        scale: {
+            from: [25,120],
+            to: [0,180]
+        }
+    }
+];
+
+/*
+*/
+
+
+/*
+*/
+function scaleValueInt(value, from, to) {
+	var scale = (to[1] - to[0]) / (from[1] - from[0]);
+	var capped = Math.min(from[1], Math.max(from[0], value)) - from[0];
+	return ~~(capped * scale + to[0]);
+};
+
+function scaleValueFloat(value, from, to) { 
+    return ( value - r1[ 0 ] ) * ( r2[ 1 ] - r2[ 0 ] ) / ( r1[ 1 ] - r1[ 0 ] ) + r2[ 0 ];
+};
+
+/*
+*/
 function drawgauge(gauge, disp, value) {
   if(value <= 66) {
       gauge.css('--color', 'lightblue');
@@ -12,16 +47,13 @@ function drawgauge(gauge, disp, value) {
   disp.text(value);  
 };
 
-$('#slider').on('input change', function(evt) {
-  drawgauge($('#gauge_1 .gauge-dial'), $('#gauge_1 .gauge-value'), evt.target.value);
-});
-
+/*
+*/
 let low = 32;
 let set = low;
 let high = 120;
 
 let dir = 1;
-
 let tid = null;
 
 function moveGauge() {
@@ -33,6 +65,8 @@ function moveGauge() {
     );
 };
 
+/*
+*/
 $('#autorun').on('input change', function(evt) {
     if(evt.target.checked) {
         if(tid === null) {
@@ -46,4 +80,12 @@ $('#autorun').on('input change', function(evt) {
         }
     }
 });
+
+/*
+*/
+$('#slider').on('input change', function(evt) {
+  drawgauge($('#gauge_1 .gauge-dial'), $('#gauge_1 .gauge-value'), evt.target.value);
+});
+
+
 
