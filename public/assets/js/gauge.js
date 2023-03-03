@@ -19,7 +19,7 @@ let gauge_def = [
         },
         scale: {
             from: [25,120],
-            to: [0,180]
+            to: [0,182]
         },
     }
 ];
