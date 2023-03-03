@@ -36,15 +36,16 @@ function scaleValueFloat(value, from, to) {
 
 /*
 */
-function drawgauge(gauge, disp, value) {
-    
-    for(ix = 0;ix < gauge_def[GAUGE_ID].ranges.length; ix++) {
-        if(value <= gauge_def[GAUGE_ID].ranges[ix].top) {
-            gauge.css('--color', gauge_def[GAUGE_ID].ranges[ix].color);
+function drawgauge(gauge_id, value) {
+    let gauge = $(gauge_def[gauge_id].id+' .gauge-dial');
+    let disp  = $(gauge_def[GAUGE_ID].id+' .gauge-value');
+    for(ix = 0;ix < gauge_def[gauge_id].ranges.length; ix++) {
+        if(value <= gauge_def[gauge_id].ranges[ix].top) {
+            gauge.css('--color', gauge_def[gauge_id].ranges[ix].color);
             break;
         }
     }
-    let deg = scaleValueInt(value, gauge_def[GAUGE_ID].scale.from, gauge_def[GAUGE_ID].scale.to);
+    let deg = scaleValueInt(value, gauge_def[gauge_id].scale.from, gauge_def[gauge_id].scale.to);
     gauge.css('--ng', deg + 'deg');
     disp.text(value);  
 };
@@ -59,7 +60,7 @@ let dir = 1;
 let tid = null;
 
 function moveGauge() {
-    drawgauge($(gauge_def[GAUGE_ID].id+' .gauge-dial'), $(gauge_def[GAUGE_ID].id+' .gauge-value'), set);
+    drawgauge(GAUGE_ID, set);
     $('#slider').val(set);
     (dir > 0 ? 
         ((set+=dir) >= high ? dir = -1 : dir = 1) : 
@@ -86,7 +87,7 @@ $('#autorun').on('input change', function(evt) {
 /*
 */
 $('#slider').on('input change', function(evt) {
-  drawgauge($(gauge_def[GAUGE_ID].id+' .gauge-dial'), $(gauge_def[GAUGE_ID].id+' .gauge-value'), evt.target.value);
+  drawgauge(GAUGE_ID, evt.target.value);
 });
 
 /*
@@ -95,5 +96,5 @@ $('#slider').attr('min', gauge_def[GAUGE_ID].scale.from[0]);
 $('#slider').attr('max', gauge_def[GAUGE_ID].scale.from[1]);
 let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
 $('#slider').val(mid);
-drawgauge($(gauge_def[GAUGE_ID].id+' .gauge-dial'), $(gauge_def[GAUGE_ID].id+' .gauge-value'), mid);
+drawgauge(GAUGE_ID, mid);
 
