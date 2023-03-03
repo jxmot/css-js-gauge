@@ -51,9 +51,24 @@ function drawGauge(gaugeId, value) {
     let gauge = $(gauge_def[gaugeId].id+' .gauge-dial');
     let disp  = $(gauge_def[gaugeId].id+' .gauge-value');
     for(ix = 0;ix < gauge_def[gaugeId].ranges.length; ix++) {
-        if(value <= gauge_def[gaugeId].ranges[ix].top) {
-            gauge.css('--color', gauge_def[gaugeId].ranges[ix].color);
-            break;
+        if(gauge_def[gaugeId].shift.enable === true) {
+            if(gauge_def[gaugeId].ranges[ix].shift.length === 0) {
+                let fcol = gauge_def[gaugeId].ranges[ix].color;
+                let tidx = (ix < (gauge_def[gaugeId].ranges.length - 1) ? ix+1 : ix);
+                let tcol = gauge_def[gaugeId].ranges[tidx].color;;
+                gauge_def[gaugeId].ranges[ix].shift = ColorSteps.getColorSteps(fcol, tcol, 
+                                                                 gauge_def[gaugeId].shift.steps);
+            }
+            let start = gauge_def[gaugeId].ranges[ix].top - gauge_def[gaugeId].shift.steps;
+            if((value >= start) && (value <= gauge_def[gaugeId].ranges[ix].top)) {
+                let cidx = gauge_def[gaugeId].shift.steps - (gauge_def[gaugeId].ranges[ix].top - value);
+                gauge.css('--color', gauge_def[gaugeId].ranges[ix].shift[cidx]);
+            }
+        } else {
+            if(value <= gauge_def[gaugeId].ranges[ix].top) {
+                gauge.css('--color', gauge_def[gaugeId].ranges[ix].color);
+                break;
+            }
         }
     }
     let deg = scaleValueInt(value, gauge_def[gaugeId].scale.from, gauge_def[gaugeId].scale.to);
