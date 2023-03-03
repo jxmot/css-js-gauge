@@ -60,7 +60,7 @@ let dir = 1;
 let tid = null;
 
 function moveGauge() {
-    drawgauge($('#gauge_1 .gauge-dial'), $('#gauge_1 .gauge-value'), set);
+    drawgauge($(gauge_def[GAUGE_ID].id+' .gauge-dial'), $(gauge_def[GAUGE_ID].id+' .gauge-value'), set);
     $('#slider').val(set);
     (dir > 0 ? 
         ((set+=dir) >= high ? dir = -1 : dir = 1) : 
@@ -73,7 +73,7 @@ function moveGauge() {
 $('#autorun').on('input change', function(evt) {
     if(evt.target.checked) {
         if(tid === null) {
-            set = parseInt($('#gauge_1 .gauge-value').text());
+            set = parseInt($(gauge_def[GAUGE_ID].id+' .gauge-value').text());
             tid = setInterval(moveGauge, 100);
         }
     } else {
@@ -87,7 +87,7 @@ $('#autorun').on('input change', function(evt) {
 /*
 */
 $('#slider').on('input change', function(evt) {
-  drawgauge($('#gauge_1 .gauge-dial'), $('#gauge_1 .gauge-value'), evt.target.value);
+  drawgauge($(gauge_def[GAUGE_ID].id+' .gauge-dial'), $(gauge_def[GAUGE_ID].id+' .gauge-value'), evt.target.value);
 });
 
 
