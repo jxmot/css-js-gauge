@@ -90,5 +90,11 @@ $('#slider').on('input change', function(evt) {
   drawgauge($(gauge_def[GAUGE_ID].id+' .gauge-dial'), $(gauge_def[GAUGE_ID].id+' .gauge-value'), evt.target.value);
 });
 
-
+/*
+*/
+$('#slider').attr('min', gauge_def[GAUGE_ID].scale.from[0]);
+$('#slider').attr('max', gauge_def[GAUGE_ID].scale.from[1]);
+let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
+$('#slider').val(mid);
+drawgauge($(gauge_def[GAUGE_ID].id+' .gauge-dial'), $(gauge_def[GAUGE_ID].id+' .gauge-value'), mid);
 
