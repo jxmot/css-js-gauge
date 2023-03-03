@@ -37,17 +37,17 @@ function scaleValueFloat(value, from, to) {
 /*
 */
 function drawgauge(gauge, disp, value) {
-  if(value <= 66) {
-      gauge.css('--color', 'lightblue');
-  } else if(value <= 85) {
-      gauge.css('--color', 'green');
-  } else if(value <= 100) {
-      gauge.css('--color', 'yellow');
-  } else {
-      gauge.css('--color', 'red');
-  }
-  gauge.css('--ng', value + 'deg');
-  disp.text(value);  
+    
+    for(ix = 0;ix < gauge_def[GAUGE_ID].ranges.length; ix++) {
+        if(value <= gauge_def[GAUGE_ID].ranges[ix].top) {
+            gauge.css('--color', gauge_def[GAUGE_ID].ranges[ix].color);
+            break;
+        }
+    }
+    let deg = scaleValueInt(value, gauge_def[GAUGE_ID].scale.from, gauge_def[GAUGE_ID].scale.to);
+    gauge.css('--ng', deg + 'deg');
+//    gauge.css('--ng', value + 'deg');
+    disp.text(value);  
 };
 
 /*
