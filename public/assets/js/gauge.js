@@ -1,23 +1,26 @@
 /*
 */
-let gauge_def = [ 
-    {
-        ranges: [
-            {top:  66, color: 'lightblue'},
-            {top:  85, color: 'green'},
-            {top: 100, color: 'yellow'},
-            {top: 120, color: 'red'},
-        ],
-        scale: {
-            from: [25,120],
-            to: [0,180]
-        }
-    }
-];
+let GAUGE_ID = 0;
 
 /*
 */
-
+let gauge_def = [ 
+    {
+        id: '#gauge_1',
+        ranges: [
+            {top:  60, color: 'lightblue'},
+            {top:  80, color: 'green'},
+            {top: 100, color: 'yellow'},
+            {top: 120, color: 'red'},
+        ],
+        steps: [5, 5, 5, 5],
+        scale: {
+            from: [25,120],
+            to: [0,180]
+        },
+        
+    }
+];
 
 /*
 */
