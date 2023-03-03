@@ -8,17 +8,19 @@ let gauge_def = [
     {
         id: '#gauge_1',
         ranges: [
-            {top:  60, color: 'lightblue'},
-            {top:  80, color: 'green'},
-            {top: 100, color: 'yellow'},
-            {top: 120, color: 'red'},
+            {top:  60, shift: [], color: 'lightblue'},
+            {top:  80, shift: [], color: 'green'},
+            {top: 100, shift: [], color: 'yellow'},
+            {top: 120, shift: [], color: 'red'},
         ],
-        steps: [5, 5, 5, 5],
+        shift: {
+            enable: true,
+            steps: 5,
+        },
         scale: {
             from: [25,120],
             to: [0,180]
         },
-        
     }
 ];
 
@@ -31,7 +33,16 @@ function scaleValueInt(value, from, to) {
 };
 
 function scaleValueFloat(value, from, to) { 
-    return ( value - r1[ 0 ] ) * ( r2[ 1 ] - r2[ 0 ] ) / ( r1[ 1 ] - r1[ 0 ] ) + r2[ 0 ];
+    return (value - r1[0]) * (r2[1] - r2[0]) / (r1[1] - r1[0]) + r2[0];
+};
+
+/*
+*/
+function inStepRange(value, top, step) {
+    if((value >= (top-step)) && (value <= top)) {
+        return true;
+    }
+    return false;
 };
 
 /*
