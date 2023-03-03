@@ -14,13 +14,21 @@
             <div class="gauge-display">
                 <h3>
                     <span class="gauge-value">72</span>
-                    <span class="">F</span>
+                    <span class="gauge-unit">°F</span>
                 </h3>
             </div>
         </div>
     </div>
-    <input id="slider" type="range" max="360" value="72">
-    <br>
+    <div class="controls">
+        <div class="slider">
+            <input id="slider" type="range" min="0" max="360" value="72">
+        </div>
+        <div class="legend">
+            <div class="">25</div>
+            <div>Range</div>
+            <div class="">120</div>
+        </div>
+    </div>
     <div>
         <label for="autorun">Auto Run</label>
         <input id="autorun" type="checkbox">
