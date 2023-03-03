@@ -36,7 +36,7 @@ body {
 }
 
 .gauge-dial {
-    --ng: 72deg; /* can be set via slider */
+    --angle: 72deg; /* can be set via slider */
     --color: green;
     --thickness: 50px;
     --_inner: calc(70% - var(--thickness));
@@ -50,8 +50,8 @@ body {
     );
     mask: radial-gradient(circle, #0000 var(--_inner), #000 var(--_outer));
 
-    /* the conic gradient, transparent after --ng */
-    background-image: conic-gradient(var(--color) var(--ng), #0000 0);
+    /* the conic gradient, transparent after --angle */
+    background-image: conic-gradient(var(--color) var(--angle), #0000 0);
 
     aspect-ratio: 1;
     inline-size: 50vmin;
@@ -60,6 +60,7 @@ body {
 
 .gauge-display {
     transform: rotate(90deg);
+    cursor: default;
 }
 
 .controls {
@@ -87,5 +88,6 @@ body {
     display: grid;
     grid-template-columns: auto auto auto;
     text-align: center;
+    cursor: default;
     width: 100%;
 }
