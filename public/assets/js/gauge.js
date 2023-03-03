@@ -46,7 +46,6 @@ function drawgauge(gauge, disp, value) {
     }
     let deg = scaleValueInt(value, gauge_def[GAUGE_ID].scale.from, gauge_def[GAUGE_ID].scale.to);
     gauge.css('--ng', deg + 'deg');
-//    gauge.css('--ng', value + 'deg');
     disp.text(value);  
 };
 
