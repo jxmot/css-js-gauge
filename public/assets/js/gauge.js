@@ -15,7 +15,7 @@ let gauge_def = [
         ],
         shift: {
             enable: true,
-            steps: 5,
+            steps: 10, //5,
         },
         scale: {
             from: [25,120],
