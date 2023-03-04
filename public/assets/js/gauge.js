@@ -63,6 +63,7 @@ function drawGauge(gaugeId, value) {
             if((value >= start) && (value <= gauge_def[gaugeId].ranges[ix].top)) {
                 let cidx = gauge_def[gaugeId].shift.steps - (gauge_def[gaugeId].ranges[ix].top - value);
                 gauge.css('--color', gauge_def[gaugeId].ranges[ix].shift[cidx]);
+                break;
             }
         } else {
             if(value <= gauge_def[gaugeId].ranges[ix].top) {
