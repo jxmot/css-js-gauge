@@ -90,8 +90,8 @@ function moveGauge() {
     drawGauge(GAUGE_ID, set);
     $('#slider').val(set);
     (dir > 0 ? 
-        ((set+=dir) >= high ? dir = -1 : dir = 1) : 
-        (dir < 0 ? ((set+=dir) <= low ? dir = 1 : dir = -1) : dir = dir)
+        ((set+=dir) >= high ? dir = -1 : dir =  1) : 
+        ((set+=dir) <= low  ? dir =  1 : dir = -1)
     );
 };
 
@@ -119,9 +119,11 @@ $('#slider').on('input change', function(evt) {
 
 /*
 */
-$('#slider').attr('min', gauge_def[GAUGE_ID].scale.from[0]);
-$('#slider').attr('max', gauge_def[GAUGE_ID].scale.from[1]);
-let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
-$('#slider').val(mid);
-drawGauge(GAUGE_ID, mid);
+$(function() {
+    $('#slider').attr('min', gauge_def[GAUGE_ID].scale.from[0]);
+    $('#slider').attr('max', gauge_def[GAUGE_ID].scale.from[1]);
+    let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
+    $('#slider').val(mid);
+    drawGauge(GAUGE_ID, mid);
+});
 
