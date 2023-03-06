@@ -13,7 +13,7 @@ body {
     gap: 5vmin;
 }
 
-.container {
+.gauge-container {
     transform: rotate(-90deg);
 }
 
@@ -32,9 +32,9 @@ body {
 }
 
 .gauge-dial {
-    --angle: 72deg; /* can be set via slider */
+    --angle: 90deg; /* can be set via slider */
     --color: green;
-    --thickness: 50px;
+    --thickness: 3rem;
     --_inner: calc(70% - var(--thickness));
     --_outer: calc(var(--_inner) + 1px); /* fixes aliasing */
 
