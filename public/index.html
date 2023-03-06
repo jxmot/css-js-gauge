@@ -8,22 +8,30 @@
     <link rel="stylesheet" href="./assets/css/gauge.css">
 </head>
 <body>
-    <div class="container">
+    <div class="gauge-container">
         <div id="gauge_1" class="gauge">
             <div class="gauge-dial"></div>
             <div class="gauge-display">
-                <h3>
-                    <span class="gauge-value">72</span>
-                    <span class="gauge-unit">°F</span>
-                </h3>
+                <div class="gauge-legend left">
+                    <span>25</span><span> °F</span>
+                </div>
+                <div class="gauge-current">
+                    <h3>
+                        <span class="gauge-value">72</span>
+                        <span class="gauge-unit">°F</span>
+                    </h3>
+                </div>
+                <div class="gauge-legend right">
+                    <span>120</span><span> °F</span>
+                </div>
             </div>
         </div>
     </div>
     <div class="controls">
         <div class="slider">
-            <input id="slider" type="range" min="0" max="360" value="72">
+            <input id="slider" type="range" min="" max="" value="">
         </div>
-        <div class="legend">
+        <div class="slider-legend">
             <div class="">25°F</div>
             <div>Range</div>
             <div class="">120°F</div>

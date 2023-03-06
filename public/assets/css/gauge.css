@@ -56,7 +56,30 @@ body {
 
 .gauge-display {
     transform: rotate(90deg);
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* text-align: center; */
     cursor: default;
+    width: 100%;
+}
+
+.gauge-current {
+    cursor: default;
+    text-align: center;
+}
+
+.gauge-legend {
+    font-size: small;
+    margin-top: 2.5rem;
+}
+
+.gauge-legend.left {
+    text-align: left;
+}
+
+.gauge-legend.right {
+    text-align: right;
 }
 
 .controls {
@@ -80,7 +103,7 @@ body {
     width: 80%;
 }
 
-.legend {
+.slider-legend {
     display: grid;
     grid-template-columns: auto auto auto;
     text-align: center;
