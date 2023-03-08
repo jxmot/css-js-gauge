@@ -70,6 +70,10 @@ body {
     text-align: center;
 }
 
+.gauge-trend {
+    width: 0.75rem;
+}
+
 .gauge-legend {
     font-size: small;
     margin-top: 2.5rem;
