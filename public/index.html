@@ -8,40 +8,50 @@
     <link rel="stylesheet" href="./assets/css/gauge.css">
 </head>
 <body>
-    <div class="gauge-container">
-        <div id="gauge_1" class="gauge">
+    <div class="gauge-container" style="display:none;">
+        <div id="gauge_1" class="gauge" style="display:none;">
             <div class="gauge-dial"></div>
             <div class="gauge-display">
                 <div class="gauge-legend left">
-                    <span>25</span><span> °F</span>
+                    <span class="gauge-legend-low"></span>
+                    <span class="gauge-unit"></span>
                 </div>
                 <div class="gauge-current">
                     <h3>
-                        <span class="gauge-value">72</span>
-                        <span class="gauge-unit">°F</span>
+                        <span class="gauge-value"></span>
+                        <span class="gauge-unit"></span>
                     </h3>
                 </div>
                 <div class="gauge-legend right">
-                    <span>120</span><span> °F</span>
+                    <span class="gauge-legend-high"></span>
+                    <span class="gauge-unit"></span>
                 </div>
             </div>
         </div>
     </div>
-    <div class="controls">
+    <div class="gauge-controls" style="display:none;">
         <div class="slider">
             <input id="slider" type="range" min="" max="" value="">
         </div>
-        <div class="slider-legend">
-            <div class="">25°F</div>
+        <div id="slider-legend" class="slider-legend">
+            <div>
+                <span class="slider-legend-low"></span>
+                <span class="slider-unit"></span>
+            </div>
             <div>Range</div>
-            <div class="">120°F</div>
+            <div>
+                <span class="slider-legend-high"></span>
+                <span class="slider-unit"></span>
+            </div>
+        </div>
+        <div class="options">
+            <label for="autorun">Auto Run</label>
+            <input id="autorun" type="checkbox">
         </div>
     </div>
-    <div>
-        <label for="autorun">Auto Run</label>
-        <input id="autorun" type="checkbox">
-    </div>
     <script src="./assets/js/colors.js"></script>
+    <script src="./assets/js/scale.js"></script>
+    <script src="./assets/js/gaugedefs.js"></script>
     <script src="./assets/js/gauge.js"></script>
 </body>
 </html>
