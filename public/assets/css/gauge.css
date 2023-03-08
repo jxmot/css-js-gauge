@@ -14,7 +14,8 @@ body {
 }
 
 .gauge-container {
-    transform: rotate(-90deg);
+    --rotate: -90deg;
+    transform: rotate(var(--rotate));
 }
 
 .gauge {
@@ -55,11 +56,11 @@ body {
 }
 
 .gauge-display {
-    transform: rotate(90deg);
+    --rotate: 90deg;
+    transform: rotate(var(--rotate));
 
     display: grid;
     grid-template-columns: auto auto auto;
-    /* text-align: center; */
     cursor: default;
     width: 100%;
 }
@@ -82,14 +83,14 @@ body {
     text-align: right;
 }
 
-.controls {
+.gauge-controls {
     display: grid;
     place-items: center;
     grid-template-columns: auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
 }
 
-.controls > * {
+.gauge-controls > * {
     grid-area: 1/1;
 }
 
@@ -110,3 +111,8 @@ body {
     cursor: default;
     width: 100%;
 }
+
+.options {
+    margin-top: 5rem;
+}
+
