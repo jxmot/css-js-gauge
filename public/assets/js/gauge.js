@@ -61,9 +61,9 @@ function drawGauge(gaugeId, value) {
 
 /*
 */
-let low = 32;
-let set = low;
-let high = 120;
+let low  = gauge_def[GAUGE_ID].scale.from[0];
+let set  = low;
+let high = gauge_def[GAUGE_ID].scale.from[1];
 
 let dir = 1;
 let tid = null;
