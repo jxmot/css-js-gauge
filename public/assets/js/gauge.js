@@ -23,6 +23,13 @@ function initGauge(gaugeId, value = 0) {
     $(gauge_def[gaugeId].id).parent('.gauge-container').css('--rotate', gauge_def[gaugeId].gauge.container+'deg');
     $(gauge_def[gaugeId].id+' .gauge-display').css('--rotate', gauge_def[gaugeId].gauge.display+'deg');
 
+    for(ix = 0;ix < gauge_def[gaugeId].ranges.length; ix++) {
+        if(value <= gauge_def[gaugeId].ranges[ix].top) {
+            $(gauge_def[gaugeId].id+' .gauge-dial').css('--color', gauge_def[gaugeId].ranges[ix].color)
+            break;
+        }
+    }
+
     $(gauge_def[gaugeId].id).show();
     $(gauge_def[gaugeId].id).parent('.gauge-container').show();
 };
@@ -63,7 +70,7 @@ function drawGauge(gaugeId, value) {
         let img = (gauge_def[gaugeId].trend.last === null ? gauge_def[gaugeId].trend.bk : 
                   (gauge_def[gaugeId].trend.last > value ? gauge_def[gaugeId].trend.dn :
                   (gauge_def[gaugeId].trend.last < value ? gauge_def[gaugeId].trend.up :
-                  (gauge_def[gaugeId].trend.last === value ? gauge_def[gaugeId].trend.up : gauge_def[gaugeId].trend.uk )))
+                  (gauge_def[gaugeId].trend.last === value ? gauge_def[gaugeId].trend.eq : gauge_def[gaugeId].trend.uk )))
                   );
         trend.attr('src', img);
         
@@ -76,13 +83,29 @@ function drawGauge(gaugeId, value) {
 let low  = gauge_def[GAUGE_ID].scale.from[0];
 let set  = low;
 let high = gauge_def[GAUGE_ID].scale.from[1];
+let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
+let cnt = 25;
 
 let dir = 1;
+let dirlast = 0;
 let tid = null;
 
 function moveGauge() {
     drawGauge(GAUGE_ID, set);
     $('#slider').val(set);
+    if(gauge_def[GAUGE_ID].trend.enable === true) {
+        if(set === mid) {
+            cnt -= 1;
+            if(cnt === 0) {
+                cnt = 25;
+                dir = dirlast;
+            } else {
+                dir = 0;
+            }
+        } else {
+            dirlast = dir;
+        }
+    }
     (dir > 0 ? 
         ((set+=dir) >= high ? dir = -1 : dir =  1) : 
         ((set+=dir) <= low  ? dir =  1 : dir = -1)
@@ -114,7 +137,7 @@ $('#slider').on('input change', function(evt) {
 /*
 */
 $(function() {
-    let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
+    let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2)/2;
     
     initGauge(GAUGE_ID, mid);
     initSlider(GAUGE_ID, mid);
