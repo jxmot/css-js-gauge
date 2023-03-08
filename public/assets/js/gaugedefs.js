@@ -1,6 +1,6 @@
 /*
 */
-let GAUGE_ID = 1;
+let GAUGE_ID = 0;
 
 /*
 */
