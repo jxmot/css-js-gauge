@@ -1,48 +1,30 @@
 /*
 */
-let GAUGE_ID = 0;
+function initSlider(gaugeId, value = 0) {
+    $('#slider').attr('min', gauge_def[gaugeId].scale.from[0]);
+    $('#slider').attr('max', gauge_def[gaugeId].scale.from[1]);
+    $('#slider').val(value === 0 ? gauge_def[gaugeId].scale.from[0] : value);
 
-/*
-*/
-let gauge_def = [ 
-    {
-        id: '#gauge_1',
-        ranges: [
-            {top:  60, shift: [], color: 'lightblue'},
-            {top:  80, shift: [], color: 'green'},
-            {top: 100, shift: [], color: 'yellow'},
-            {top: 120, shift: [], color: 'red'},
-        ],
-        shift: {
-            enable: true,
-            steps: 10, //5,
-        },
-        scale: {
-            from: [25,120],
-            to: [0,180]
-        },
-    }
-];
-
-/*
-*/
-function scaleValueInt(value, from, to) {
-	var scale = (to[1] - to[0]) / (from[1] - from[0]);
-	var capped = Math.min(from[1], Math.max(from[0], value)) - from[0];
-	return ~~(capped * scale + to[0]);
-};
-
-function scaleValueFloat(value, from, to) { 
-    return (value - r1[0]) * (r2[1] - r2[0]) / (r1[1] - r1[0]) + r2[0];
+    $('#slider-legend .slider-legend-low').text(gauge_def[gaugeId].scale.from[0]);
+    $('#slider-legend .slider-legend-high').text(gauge_def[gaugeId].scale.from[1]);
+    $('#slider-legend .slider-unit').text(gauge_def[gaugeId].unit);
+    
+    $('.gauge-controls').show();
 };
 
 /*
 */
-function inStepRange(value, top, step) {
-    if((value >= (top-step)) && (value <= top)) {
-        return true;
-    }
-    return false;
+function initGauge(gaugeId, value = 0) {
+    $(gauge_def[gaugeId].id+' .gauge-legend-low').text(gauge_def[gaugeId].scale.from[0]);
+    $(gauge_def[gaugeId].id+' .gauge-legend-high').text(gauge_def[gaugeId].scale.from[1]);
+    $(gauge_def[gaugeId].id+' .gauge-unit').text(gauge_def[gaugeId].unit);
+    $(gauge_def[gaugeId].id+' .gauge-value').text(value);
+
+    $(gauge_def[gaugeId].id).parent('.gauge-container').css('--rotate', gauge_def[gaugeId].gauge.container+'deg');
+    $(gauge_def[gaugeId].id+' .gauge-display').css('--rotate', gauge_def[gaugeId].gauge.display+'deg');
+
+    $(gauge_def[gaugeId].id).show();
+    $(gauge_def[gaugeId].id).parent('.gauge-container').show();
 };
 
 /*
@@ -114,16 +96,16 @@ $('#autorun').on('input change', function(evt) {
 /*
 */
 $('#slider').on('input change', function(evt) {
-  drawGauge(GAUGE_ID, evt.target.value);
+    drawGauge(GAUGE_ID, evt.target.value);
 });
 
 /*
 */
 $(function() {
-    $('#slider').attr('min', gauge_def[GAUGE_ID].scale.from[0]);
-    $('#slider').attr('max', gauge_def[GAUGE_ID].scale.from[1]);
     let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
-    $('#slider').val(mid);
+    
+    initGauge(GAUGE_ID, mid);
+    initSlider(GAUGE_ID, mid);
     drawGauge(GAUGE_ID, mid);
 });
 
