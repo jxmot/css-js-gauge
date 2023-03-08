@@ -32,6 +32,7 @@ function initGauge(gaugeId, value = 0) {
 function drawGauge(gaugeId, value) {
     let gauge = $(gauge_def[gaugeId].id+' .gauge-dial');
     let disp  = $(gauge_def[gaugeId].id+' .gauge-value');
+    let trend = $(gauge_def[gaugeId].id+' .gauge-trend');
     for(ix = 0;ix < gauge_def[gaugeId].ranges.length; ix++) {
         if(gauge_def[gaugeId].shift.enable === true) {
             if(gauge_def[gaugeId].ranges[ix].shift.length === 0) {
@@ -56,7 +57,18 @@ function drawGauge(gaugeId, value) {
     }
     let deg = scaleValueInt(value, gauge_def[gaugeId].scale.from, gauge_def[gaugeId].scale.to);
     gauge.css('--angle', deg + 'deg');
-    disp.text(value);  
+    disp.text(value);
+    
+    if(gauge_def[gaugeId].trend.enable === true) {
+        let img = (gauge_def[gaugeId].trend.last === null ? gauge_def[gaugeId].trend.bk : 
+                  (gauge_def[gaugeId].trend.last > value ? gauge_def[gaugeId].trend.dn :
+                  (gauge_def[gaugeId].trend.last < value ? gauge_def[gaugeId].trend.up :
+                  (gauge_def[gaugeId].trend.last === value ? gauge_def[gaugeId].trend.up : gauge_def[gaugeId].trend.uk )))
+                  );
+        trend.attr('src', img);
+        
+        gauge_def[gaugeId].trend.last = value;
+    }
 };
 
 /*

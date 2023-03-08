@@ -26,6 +26,15 @@ let gauge_def = [
             container: -90,
             display: 90
         },
+        trend: {
+            enable: true,
+            last: null,
+            up: './assets/img/trend_up-30x45.png',
+            dn: './assets/img/trend_dn-30x45.png',
+            eq: './assets/img/trend_eq-30x23.png',
+            uk: './assets/img/trend_unk-29x46.png',
+            bk: './assets/img/trend_blank-30x45.png',
+        }
     },
     {
         id: '#gauge_2',
@@ -46,6 +55,9 @@ let gauge_def = [
         gauge: {
             container: -45,
             display: 45
+        },
+        trend: {
+            enable: false,
         },
     },
 ];
