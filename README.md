@@ -8,7 +8,7 @@ These these gists were also used here -
 * [fpillet/scale.js](https://gist.github.com/fpillet/993002)
 * [av01d/ColorSteps.js](https://gist.github.com/av01d/538b3fffc78fdc273894d173a83c563f1)
 
-## Details
+## Overview
 
 This gauge represents temperature in a range from 25 degrees to 120 degrees.
 
@@ -16,11 +16,11 @@ This gauge represents temperature in a range from 25 degrees to 120 degrees.
 <img src="./mdimg/sshot-01.png" style="width:50%;">
 </div>
 
-### Overview
+### Details
 
 Although this demo shows the gauge in °F the gauge can be configured for anything.
 
-It also *shifts* color as the value transitions through configurable *ranges*
+It also *shifts* color as the value transitions through configurable *ranges*.
 
 The gauge is separate from the slider control and does not rely on it.
 
@@ -32,4 +32,7 @@ The gauge is separate from the slider control and does not rely on it.
     * Range Color - 
   * Gauge Color Shift - 
   * Gauge Thickness - 
-  * 
+  * Gauge dial range and orientation - 
+  * Gauge units - 
+  * Scaling - 
+
