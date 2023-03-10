@@ -28,10 +28,10 @@ The gauge is separate from the slider control and does not rely on it.
 
 * Configurable:
   * Gauge Ranges - there can be one to N ranges, there is no limit except for what is within reason.
-    * Range "top" limit - 
-    * Range Color - 
-  * Gauge Color Shift - 
-  * Gauge Thickness - 
+    * Range "top" limit - the "top" of the range is the maximum value for that range
+    * Range Color - this is the color used while the value is in range
+  * Gauge Color Shift - when enabled the entire gauge color will gradually shift from one range to the next range's color as the value changes. The starting point of the shift is also configurable.
+  * Gauge Thickness - the thickness of the gauge "arc".
   * Gauge dial range and orientation - 
   * Gauge units - 
   * Scaling - 
