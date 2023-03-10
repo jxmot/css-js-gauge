@@ -12,8 +12,12 @@ These these gists were also used here -
 
 This gauge represents temperature in a range from 25 degrees to 120 degrees.
 
-<div style="text-align:center;">
-<img src="./mdimg/sshot-01.png" style="width:50%;">
+<div align="center">
+    <figure>
+        <img src="./mdimg/sshot-01.png" style="width:50%;border: 2px solid white"; alt="Gauge Screenshot" txt="Gauge Screenshot"/>
+        <br>
+        <figcaption><strong>Gauge Screenshot</strong></figcaption>
+    </figure>
 </div>
 
 ### Details
