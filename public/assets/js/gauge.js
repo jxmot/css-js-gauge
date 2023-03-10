@@ -9,7 +9,7 @@ function initSlider(gaugeId, value = 0) {
     $('#slider-legend .slider-legend-high').text(gauge_def[gaugeId].scale.from[1]);
     $('#slider-legend .slider-unit').text(gauge_def[gaugeId].unit);
     
-    $('.gauge-controls').show();
+    $('#slider').parent('.slider').parent('.gauge-controls').show();
 };
 
 /*
@@ -84,7 +84,7 @@ let low  = gauge_def[GAUGE_ID].scale.from[0];
 let set  = low;
 let high = gauge_def[GAUGE_ID].scale.from[1];
 let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
-let cnt = 25;
+let cnt = 40;
 
 let dir = 1;
 let dirlast = 0;
@@ -137,10 +137,9 @@ $('#slider').on('input change', function(evt) {
 /*
 */
 $(function() {
-    let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2)/2;
-    
-    initGauge(GAUGE_ID, mid);
-    initSlider(GAUGE_ID, mid);
-    drawGauge(GAUGE_ID, mid);
+    let val = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2)/2;
+    initGauge(GAUGE_ID, val);
+    initSlider(GAUGE_ID, val);
+    drawGauge(GAUGE_ID, val);
 });
 
