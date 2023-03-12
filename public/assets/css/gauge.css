@@ -1,17 +1,3 @@
-html {
-    block-size: 100%;
-    color-scheme: dark light;
-}
-
-body {
-    min-block-size: 100%;
-    font-family: system-ui, sans-serif;
-
-    margin: 0;
-    display: grid;
-    place-content: center;
-    gap: 5vmin;
-}
 
 .gauge-container {
     --rotate: -90deg;
@@ -85,38 +71,5 @@ body {
 
 .gauge-legend.right {
     text-align: right;
-}
-
-.gauge-controls {
-    display: grid;
-    place-items: center;
-    grid-template-columns: auto;
-    grid-template-rows: auto auto auto;
-}
-
-.gauge-controls > * {
-    grid-area: 1/1;
-}
-
-.slider {
-    margin-bottom: 2rem;
-    text-align: center;
-    width: 100%;
-}
-
-.slider > * {
-    width: 80%;
-}
-
-.slider-legend {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    text-align: center;
-    cursor: default;
-    width: 100%;
-}
-
-.options {
-    margin-top: 5rem;
 }
 
