@@ -15,7 +15,7 @@ let gauge_def = [
         ],
         shift: {
             enable: true,
-            steps: 10, //5,
+            steps: 10,
         },
         scale: {
             from: [25,120],
@@ -24,7 +24,11 @@ let gauge_def = [
         unit: '°F',
         gauge: {
             container: -90,
-            display: 90
+            display: 90,
+            dial: {
+                size: '50vmin',
+                thickness: '3rem'
+            },
         },
         trend: {
             enable: true,
@@ -54,7 +58,11 @@ let gauge_def = [
         unit: '%RH',
         gauge: {
             container: -45,
-            display: 45
+            display: 45,
+            dial: {
+                size: '20vmin',
+                thickness: '1rem'
+            },
         },
         trend: {
             enable: false,

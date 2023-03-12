@@ -1,17 +1,20 @@
 /*
 */
 function initGauge(gaugeId, value = 0) {
+    $(':root').css('--dial-thickness', gauge_def[gaugeId].gauge.dial.thickness);
+    $(gauge_def[gaugeId].id+' .gauge-dial').css('--dial-size', gauge_def[gaugeId].gauge.dial.size);
+    
     $(gauge_def[gaugeId].id+' .gauge-legend-low').text(gauge_def[gaugeId].scale.from[0]);
     $(gauge_def[gaugeId].id+' .gauge-legend-high').text(gauge_def[gaugeId].scale.from[1]);
     $(gauge_def[gaugeId].id+' .gauge-unit').text(gauge_def[gaugeId].unit);
     $(gauge_def[gaugeId].id+' .gauge-value').text(value);
 
-    $(gauge_def[gaugeId].id).parent('.gauge-container').css('--rotate', gauge_def[gaugeId].gauge.container+'deg');
-    $(gauge_def[gaugeId].id+' .gauge-display').css('--rotate', gauge_def[gaugeId].gauge.display+'deg');
+    $(gauge_def[gaugeId].id).parent('.gauge-container').css('--container-rotate', gauge_def[gaugeId].gauge.container+'deg');
+    $(gauge_def[gaugeId].id+' .gauge-display').css('--display-rotate', gauge_def[gaugeId].gauge.display+'deg');
 
     for(ix = 0;ix < gauge_def[gaugeId].ranges.length; ix++) {
         if(value <= gauge_def[gaugeId].ranges[ix].top) {
-            $(gauge_def[gaugeId].id+' .gauge-dial').css('--color', gauge_def[gaugeId].ranges[ix].color)
+            $(gauge_def[gaugeId].id+' .gauge-dial').css('--dial-color', gauge_def[gaugeId].ranges[ix].color)
             break;
         }
     }
@@ -38,18 +41,18 @@ function drawGauge(gaugeId, value) {
             let start = gauge_def[gaugeId].ranges[ix].top - gauge_def[gaugeId].shift.steps;
             if((value >= start) && (value <= gauge_def[gaugeId].ranges[ix].top)) {
                 let cidx = gauge_def[gaugeId].shift.steps - (gauge_def[gaugeId].ranges[ix].top - value);
-                gauge.css('--color', gauge_def[gaugeId].ranges[ix].shift[cidx]);
+                gauge.css('--dial-color', gauge_def[gaugeId].ranges[ix].shift[cidx]);
                 break;
             }
         } else {
             if(value <= gauge_def[gaugeId].ranges[ix].top) {
-                gauge.css('--color', gauge_def[gaugeId].ranges[ix].color);
+                gauge.css('--dial-color', gauge_def[gaugeId].ranges[ix].color);
                 break;
             }
         }
     }
     let deg = scaleValueInt(value, gauge_def[gaugeId].scale.from, gauge_def[gaugeId].scale.to);
-    gauge.css('--angle', deg + 'deg');
+    gauge.css('--value-angle', deg + 'deg');
     disp.text(value);
     
     if(gauge_def[gaugeId].trend.enable === true) {

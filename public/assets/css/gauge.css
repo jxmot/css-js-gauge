@@ -1,7 +1,20 @@
+:root{
+    --container-rotate: -90deg;
+    --display-rotate: 90deg;
+    
+    --value-angle: 90deg;
+    
+    --dial-color: green;
+    --dial-thickness: 3rem;
+    --dial-size: 50vmin;
+    
+    --_inner: calc(70% - var(--dial-thickness));
+    --_outer: calc(var(--_inner) + 1px);
+}
+
 
 .gauge-container {
-    --rotate: -90deg;
-    transform: rotate(var(--rotate));
+    transform: rotate(var(--container-rotate));
 }
 
 .gauge {
@@ -19,31 +32,19 @@
 }
 
 .gauge-dial {
-    --angle: 90deg; /* can be set via slider */
-    --color: green;
-    --thickness: 3rem;
-    --_inner: calc(70% - var(--thickness));
-    --_outer: calc(var(--_inner) + 1px); /* fixes aliasing */
-
     /* hides the inner part of the conic gradient */
-    -webkit-mask: radial-gradient(
-        circle,
-        #0000 var(--_inner),
-        #000 var(--_outer)
-    );
+    -webkit-mask: radial-gradient(circle, #0000 var(--_inner), #000 var(--_outer));
     mask: radial-gradient(circle, #0000 var(--_inner), #000 var(--_outer));
 
-    /* the conic gradient, transparent after --angle */
-    background-image: conic-gradient(var(--color) var(--angle), #0000 0);
+    background-image: conic-gradient(var(--dial-color) var(--value-angle), #0000 0);
 
     aspect-ratio: 1;
-    inline-size: 50vmin;
+    inline-size: var(--dial-size);
     border-radius: 50%;
 }
 
 .gauge-display {
-    --rotate: 90deg;
-    transform: rotate(var(--rotate));
+    transform: rotate(var(--display-rotate));
 
     display: grid;
     grid-template-columns: auto auto auto;
