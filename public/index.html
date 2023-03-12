@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSS + JS Gauge</title>
+    <title>CSS + JS Gauge Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/demo.css">
     <link rel="stylesheet" href="./assets/css/gauge.css">
+    <link rel="stylesheet" href="./assets/css/slider.css">
 </head>
 <body>
     <div class="gauge-container" style="display:none;">
@@ -54,7 +56,7 @@
         </div>
     </div>
 
-    <div class="gauge-controls" style="display:none;">
+    <div class="slider-control" style="display:none;">
         <div class="slider">
             <input id="slider" type="range" min="" max="" value="">
         </div>
@@ -69,7 +71,7 @@
                 <span class="slider-unit"></span>
             </div>
         </div>
-        <div class="options">
+        <div class="demo-options">
             <label for="autorun">Auto Run</label>
             <input id="autorun" type="checkbox">
         </div>
@@ -78,5 +80,8 @@
     <script src="./assets/js/scale.js"></script>
     <script src="./assets/js/gaugedefs.js"></script>
     <script src="./assets/js/gauge.js"></script>
+    
+    <script src="./assets/js/demo.js"></script>
+    <script src="./assets/js/slider.js"></script>
 </body>
 </html>
