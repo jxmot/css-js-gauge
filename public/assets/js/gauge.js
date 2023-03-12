@@ -1,19 +1,5 @@
 /*
 */
-function initSlider(gaugeId, value = 0) {
-    $('#slider').attr('min', gauge_def[gaugeId].scale.from[0]);
-    $('#slider').attr('max', gauge_def[gaugeId].scale.from[1]);
-    $('#slider').val(value === 0 ? gauge_def[gaugeId].scale.from[0] : value);
-
-    $('#slider-legend .slider-legend-low').text(gauge_def[gaugeId].scale.from[0]);
-    $('#slider-legend .slider-legend-high').text(gauge_def[gaugeId].scale.from[1]);
-    $('#slider-legend .slider-unit').text(gauge_def[gaugeId].unit);
-    
-    $('#slider').parent('.slider').parent('.gauge-controls').show();
-};
-
-/*
-*/
 function initGauge(gaugeId, value = 0) {
     $(gauge_def[gaugeId].id+' .gauge-legend-low').text(gauge_def[gaugeId].scale.from[0]);
     $(gauge_def[gaugeId].id+' .gauge-legend-high').text(gauge_def[gaugeId].scale.from[1]);
@@ -77,69 +63,4 @@ function drawGauge(gaugeId, value) {
         gauge_def[gaugeId].trend.last = value;
     }
 };
-
-/*
-*/
-let low  = gauge_def[GAUGE_ID].scale.from[0];
-let set  = low;
-let high = gauge_def[GAUGE_ID].scale.from[1];
-let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
-let cnt = 40;
-
-let dir = 1;
-let dirlast = 0;
-let tid = null;
-
-function moveGauge() {
-    drawGauge(GAUGE_ID, set);
-    $('#slider').val(set);
-    if(gauge_def[GAUGE_ID].trend.enable === true) {
-        if(set === mid) {
-            cnt -= 1;
-            if(cnt === 0) {
-                cnt = 25;
-                dir = dirlast;
-            } else {
-                dir = 0;
-            }
-        } else {
-            dirlast = dir;
-        }
-    }
-    (dir > 0 ? 
-        ((set+=dir) >= high ? dir = -1 : dir =  1) : 
-        ((set+=dir) <= low  ? dir =  1 : dir = -1)
-    );
-};
-
-/*
-*/
-$('#autorun').on('input change', function(evt) {
-    if(evt.target.checked) {
-        if(tid === null) {
-            set = parseInt($(gauge_def[GAUGE_ID].id+' .gauge-value').text());
-            tid = setInterval(moveGauge, 100);
-        }
-    } else {
-        if(tid !== null) {
-            clearInterval(tid); 
-            tid = null;
-        }
-    }
-});
-
-/*
-*/
-$('#slider').on('input change', function(evt) {
-    drawGauge(GAUGE_ID, evt.target.value);
-});
-
-/*
-*/
-$(function() {
-    let val = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2)/2;
-    initGauge(GAUGE_ID, val);
-    initSlider(GAUGE_ID, val);
-    drawGauge(GAUGE_ID, val);
-});
 
