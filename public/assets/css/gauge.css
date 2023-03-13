@@ -8,6 +8,9 @@
     --dial-thickness: 3rem;
     --dial-size: 50vmin;
     
+    --legend-fontsize: small;
+    --legend-margintop: 2.5rem;
+    
     --_inner: calc(70% - var(--dial-thickness));
     --_outer: calc(var(--_inner) + 1px);
 }
@@ -62,8 +65,8 @@
 }
 
 .gauge-legend {
-    font-size: small;
-    margin-top: 2.5rem;
+    font-size: var(--legend-fontsize);
+    margin-top: var(--legend-margintop);
 }
 
 .gauge-legend.left {
