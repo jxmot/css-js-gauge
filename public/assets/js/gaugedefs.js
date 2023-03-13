@@ -29,6 +29,11 @@ let gauge_def = [
                 size: '50vmin',
                 thickness: '3rem'
             },
+            legend: {
+                enable: true,
+                fontsize: 'small',
+                margintop: '2.5rem',
+            },
         },
         trend: {
             enable: true,
@@ -62,6 +67,11 @@ let gauge_def = [
             dial: {
                 size: '20vmin',
                 thickness: '1rem'
+            },
+            legend: {
+                enable: true,
+                fontsize: 'small',
+                margintop: '2.5rem',
             },
         },
         trend: {

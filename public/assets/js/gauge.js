@@ -2,6 +2,9 @@
 */
 function initGauge(gaugeId, value = 0) {
     $(':root').css('--dial-thickness', gauge_def[gaugeId].gauge.dial.thickness);
+    $(':root').css('--legend-fontsize', gauge_def[gaugeId].gauge.legend.fontsize);
+    $(':root').css('--legend-margintop', gauge_def[gaugeId].gauge.legend.margintop);
+    
     $(gauge_def[gaugeId].id+' .gauge-dial').css('--dial-size', gauge_def[gaugeId].gauge.dial.size);
     
     $(gauge_def[gaugeId].id+' .gauge-legend-low').text(gauge_def[gaugeId].scale.from[0]);
