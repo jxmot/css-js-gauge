@@ -10,7 +10,12 @@ function initGauge(gaugeId, value = 0) {
     $(gauge_def[gaugeId].id+' .gauge-legend-low').text(gauge_def[gaugeId].scale.from[0]);
     $(gauge_def[gaugeId].id+' .gauge-legend-high').text(gauge_def[gaugeId].scale.from[1]);
     $(gauge_def[gaugeId].id+' .gauge-unit').text(gauge_def[gaugeId].unit);
-    $(gauge_def[gaugeId].id+' .gauge-value').text(value);
+
+    $(gauge_def[gaugeId].id+' .gauge-value').html((value < 10 ? '&nbsp;&nbsp;'+value : value));
+    
+    if(gauge_def[gaugeId].trend.enable === false) {
+        $(gauge_def[gaugeId].id+' .gauge-trend').remove();
+    }
 
     $(gauge_def[gaugeId].id).parent('.gauge-container').css('--container-rotate', gauge_def[gaugeId].gauge.container+'deg');
     $(gauge_def[gaugeId].id+' .gauge-display').css('--display-rotate', gauge_def[gaugeId].gauge.display+'deg');
@@ -56,7 +61,7 @@ function drawGauge(gaugeId, value) {
     }
     let deg = scaleValueInt(value, gauge_def[gaugeId].scale.from, gauge_def[gaugeId].scale.to);
     gauge.css('--value-angle', deg + 'deg');
-    disp.text(value);
+    disp.html((value < 10 ? '&nbsp;&nbsp;'+value : value));
     
     if(gauge_def[gaugeId].trend.enable === true) {
         let img = (gauge_def[gaugeId].trend.last === null ? gauge_def[gaugeId].trend.bk : 
