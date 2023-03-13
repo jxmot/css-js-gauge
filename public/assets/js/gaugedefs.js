@@ -71,7 +71,7 @@ let gauge_def = [
             legend: {
                 enable: true,
                 fontsize: 'small',
-                margintop: '2.5rem',
+                margintop: '0.1rem',
             },
         },
         trend: {
