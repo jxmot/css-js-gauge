@@ -51,7 +51,7 @@ $('#autorun').on('input change', function(evt) {
 /*
 */
 $(function() {
-    let val = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2)/2;
+    let val = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
     initGauge(GAUGE_ID, val);
     initSlider(GAUGE_ID, val);
     drawGauge(GAUGE_ID, val);
