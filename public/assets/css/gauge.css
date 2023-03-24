@@ -41,7 +41,9 @@
 
     background-image: conic-gradient(var(--dial-color) var(--value-angle), #0000 0);
 
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio */
     aspect-ratio: 1;
+    
     inline-size: var(--dial-size);
     border-radius: 50%;
 }

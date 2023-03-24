@@ -6,35 +6,47 @@ let GAUGE_ID = 0;
 */
 let gauge_def = [ 
     {
+// Gauge element ID
         id: '#gauge_1',
+        
+// Gauge Value Ranges
         ranges: [
             {top:  60, shift: [], color: 'lightblue'},
             {top:  80, shift: [], color: 'green'},
             {top: 100, shift: [], color: 'yellow'},
             {top: 120, shift: [], color: 'red'},
         ],
+// Gauge Dial Color Shift
         shift: {
             enable: true,
             steps: 10,
         },
+// Scale Value to Dial Range
         scale: {
             from: [25,120],
             to: [0,180]
         },
+// Value Units
         unit: '°F',
+// Gauge Dial & Legend
         gauge: {
+// Gauge Container Rotation
             container: -90,
+// Gauge Display Rotation
             display: 90,
+// Gauge Dial overall size & thickness
             dial: {
                 size: '50vmin',
                 thickness: '3rem'
             },
+// Gauge Legend enable, font size & margin adjustment
             legend: {
                 enable: true,
                 fontsize: 'small',
                 margintop: '2.5rem',
             },
         },
+// Value Trend Indicator
         trend: {
             enable: true,
             last: null,
