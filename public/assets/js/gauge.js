@@ -1,4 +1,7 @@
 /*
+    CSS/JS Gauge
+    
+    Initialize a gauge using gauge ID and an optional initial value
 */
 function initGauge(gaugeId, value = 0) {
     $(':root').css('--dial-thickness', gauge_def[gaugeId].gauge.dial.thickness);
@@ -32,6 +35,7 @@ function initGauge(gaugeId, value = 0) {
 };
 
 /*
+    Draw a gauge using gauge ID and a value
 */
 function drawGauge(gaugeId, value) {
     let gauge = $(gauge_def[gaugeId].id+' .gauge-dial');

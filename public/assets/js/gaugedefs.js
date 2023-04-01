@@ -1,8 +1,12 @@
 /*
+    Gauge Definitions
+    
+    
 */
 let GAUGE_ID = 0;
 
 /*
+    Array of Gauge Definitions
 */
 let gauge_def = [ 
     {
