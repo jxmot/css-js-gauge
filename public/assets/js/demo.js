@@ -1,15 +1,23 @@
 /*
+    Run the CSS/JS Demonstration
 */
+
+// initialization data and autorun variables
 let low  = gauge_def[GAUGE_ID].scale.from[0];
 let val  = low;
 let high = gauge_def[GAUGE_ID].scale.from[1];
 let mid = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
 let cnt = 40;
-
+// the direction (increase vs decrease) of the autorun value
 let dir = 1;
 let dirlast = 0;
+
 let tid = null;
 
+/*
+    Move the gauge to the next value, change direction 
+    when necessary and pause in the midrange
+*/
 function moveGauge() {
     drawGauge(GAUGE_ID, val);
     $('#slider').val(val);
@@ -33,6 +41,7 @@ function moveGauge() {
 };
 
 /*
+    Start autorun
 */
 $('#autorun').on('input change', function(evt) {
     if(evt.target.checked) {
@@ -49,6 +58,7 @@ $('#autorun').on('input change', function(evt) {
 });
 
 /*
+    Initialization
 */
 $(function() {
     let val = ~~(gauge_def[GAUGE_ID].scale.from[0]+(gauge_def[GAUGE_ID].scale.from[1] - gauge_def[GAUGE_ID].scale.from[0])/2);
