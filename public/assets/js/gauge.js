@@ -43,6 +43,9 @@ function drawGauge(gaugeId, value) {
     let trend = $(gauge_def[gaugeId].id+' .gauge-trend');
     for(ix = 0;ix < gauge_def[gaugeId].ranges.length; ix++) {
         if(gauge_def[gaugeId].shift.enable === true) {
+            // when inter-range color shift is enabled we will 
+            // create the color steps during the first transition
+            // between ranges
             if(gauge_def[gaugeId].ranges[ix].shift.length === 0) {
                 let fcol = gauge_def[gaugeId].ranges[ix].color;
                 let tidx = (ix < (gauge_def[gaugeId].ranges.length - 1) ? ix+1 : ix);
@@ -63,10 +66,11 @@ function drawGauge(gaugeId, value) {
             }
         }
     }
+    // scale the gauge value to a dial range value
     let deg = scaleValueInt(value, gauge_def[gaugeId].scale.from, gauge_def[gaugeId].scale.to);
     gauge.css('--value-angle', deg + 'deg');
     disp.html((value < 10 ? '&nbsp;&nbsp;'+value : value));
-    
+    // if enabled show a trend indicator
     if(gauge_def[gaugeId].trend.enable === true) {
         let img = (gauge_def[gaugeId].trend.last === null ? gauge_def[gaugeId].trend.bk : 
                   (gauge_def[gaugeId].trend.last > value ? gauge_def[gaugeId].trend.dn :
