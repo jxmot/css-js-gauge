@@ -2,7 +2,7 @@
 
 # CSS/JS Gauge
 
-This is a simple gauge implemented with CSS and JavaScript. It was inspired by this article - [Circular gradient stroke chart](https://nerdy.dev/gradient-outline-circular-chart)
+This is a basic gauge implemented with CSS and JavaScript. It was inspired by this article - [Circular gradient stroke chart](https://nerdy.dev/gradient-outline-circular-chart)
 
 These gists were also used here - 
 * [fpillet/scale.js](https://gist.github.com/fpillet/993002)
@@ -34,9 +34,67 @@ The gauge is separate from the slider control and does not rely on it.
   * Gauge Ranges - there can be one to N ranges, there is no limit except for what is within reason.
     * Range "top" limit - the "top" of the range is the maximum value for that range
     * Range Color - this is the color used while the value is in range
-  * Gauge Color Shift - when enabled the entire gauge color will gradually shift from one range to the next range's color as the value changes. The starting point of the shift is also configurable.
+  * Gauge Dial Color Shift - when enabled the entire gauge color will gradually shift from one range to the next range's color as the value changes. The starting point of the shift is also configurable.
   * Gauge Thickness - the thickness of the gauge "arc".
-  * Gauge dial range and orientation - 
+  * Gauge dial range and orientation - the dial range can be from 0° and 360°, the orientation is created by defining a start and end in degrees.
   * Gauge units - 
   * Scaling - 
 
+### Gauge Definition
+
+`public/assets/js/gaugedefs.js` - 
+
+```
+    {
+// Gauge element ID
+        id: '#gauge_1',
+        
+// Gauge Value Ranges
+        ranges: [
+            {top:  60, shift: [], color: 'lightblue'},
+            {top:  80, shift: [], color: 'green'},
+            {top: 100, shift: [], color: 'yellow'},
+            {top: 120, shift: [], color: 'red'},
+        ],
+// Gauge Dial Color Shift
+        shift: {
+            enable: true,
+            steps: 10,
+        },
+// Scale Value to Dial Range
+        scale: {
+            from: [25,120],
+            to: [0,180]
+        },
+// Gauge Units
+        unit: '°F',
+// Gauge Dial & Legend
+        gauge: {
+// Gauge Container Rotation
+            container: -90,
+// Gauge Display Rotation
+            display: 90,
+// Gauge Dial overall size & thickness
+            dial: {
+                size: '50vmin',
+                thickness: '3rem'
+            },
+// Gauge Legend enable, font size & margin adjustment
+            legend: {
+                enable: true,
+                fontsize: 'small',
+                margintop: '2.5rem',
+            },
+        },
+// Value Trend Indicator
+        trend: {
+            enable: true,
+            last: null,
+            up: './assets/img/trend_up-30x45.png',
+            dn: './assets/img/trend_dn-30x45.png',
+            eq: './assets/img/trend_eq-30x23.png',
+            uk: './assets/img/trend_unk-29x46.png',
+            bk: './assets/img/trend_blank-30x45.png',
+        }
+    }
+```
