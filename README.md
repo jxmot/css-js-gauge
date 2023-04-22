@@ -1,5 +1,3 @@
-# **This is a Work in Progress!**
-
 # CSS/JS Gauge
 
 This is a basic gauge implemented with CSS and JavaScript. It was inspired by this article - [Circular gradient stroke chart](https://nerdy.dev/gradient-outline-circular-chart)
@@ -20,7 +18,11 @@ This gauge represents temperature in a range from 25 degrees to 120 degrees.
     </figure>
 </div>
 
-### Details
+## Running The Demonstration
+
+Open the `public/index.html` file directly in a browser.
+
+## Details
 
 Although this demo shows the gauge in °F the gauge can be configured for anything.
 
@@ -37,8 +39,8 @@ The gauge is separate from the slider control and does not rely on it.
   * Gauge Dial Color Shift - when enabled the entire gauge color will gradually shift from one range to the next range's color as the value changes. The starting point of the shift is also configurable.
   * Gauge Thickness - the thickness of the gauge "arc".
   * Gauge dial range and orientation - the dial range can be from 0° and 360°, the orientation is created by defining a start and end in degrees.
-  * Gauge units - 
-  * Scaling - 
+  * Gauge units - text to use a a gauge "units" label, keep to 3 characters or less.
+  * Scaling - this lets you scale your input range to the range (in degrees) of the gauge dial.
 
 ### Gauge Definition
 
