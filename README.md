@@ -100,3 +100,7 @@ The gauge is separate from the slider control and does not rely on it.
         }
     }
 ```
+
+---
+<img src="http://webexperiment.info/extcounter/mdcount.php?id=css-js-gauge">
+
